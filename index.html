@@ -1,0 +1,26 @@
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+<body class="m-auto text-center">
+
+    <div class="border border-purple m-4" contenteditable oninput="setText(event)">Seu texto aqui</div>
+    <button onclick="speak()" class="p-4 bg-purple-200 rounded shadow">Falar</button>
+    <button onclick="stop()" class="p-4 bg-purple-700 text-white rounded shadow">Parar</button>
+
+</body>
+<script>
+    const utterance = new SpeechSynthesisUtterance();
+
+    utterance.lang = "pt-BR";
+
+    function speak() {
+        speechSynthesis.speak(utterance);
+    }
+
+    function stop() {
+        speechSynthesis.cancel();
+    }
+
+    function setText(event) {
+        utterance.text = event.target.innerText;
+    }
+</script>
